@@ -69,6 +69,14 @@ public class ExtractContentJob extends AbstractJob {
 			MrCache.getCacheData();
 		}
 
+		/**
+		 * 不建议用以下方式处理到hbase中，最好使用hfile方式直接load到hbase中
+		 * @param key
+		 * @param value
+		 * @param context
+		 * @throws IOException
+		 * @throws InterruptedException
+		 */
 		@Override
 		protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 

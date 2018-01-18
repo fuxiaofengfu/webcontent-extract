@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration>
+
+    <property>
+        <name>hbase.hregion.memstore.block.multiplier</name>
+        <value>2</value>
+        <description>region server在写入时会检查每个region对应的memstore的总大小是否超过了memstore默认大小的2倍(hbase.hregion.memstore.block.multiplier决定)，如果超过了则锁住memstore不让新写请求进来并触发flush，避免产生OOM</description>
+    </property>
+    <!--<property>-->
+        <!--<name>hbase.hregion.max.filesize</name>-->
+        <!--<value>256000000</value>-->
+        <!--<description>region最大值,超过则split</description>-->
+    <!--</property>-->
+    <property>
+        <name>hbase.client.scanner.caching</name>
+        <value>10000</value>
+        <description>client一次从regionserver抓取的条数</description>
+    </property>
+    <property>
+        <name>hbase.client.scanner.timeout.period</name>
+        <value>900000</value>
+        <description>scanner过期时间</description>
+    </property>
+    <property>
+        <name>hbase.tmp.dir</name>
+        <value>/Users/xiaofengfu/Documents/ideaworkspace/hbaselearn/tmp</value>
+    </property>
+    <property>
+        <name>hfile.block.cache.size</name>
+        <value>0.39</value>
+        <description>storefile读缓存占用的heap百分比</description>
+    </property>
+    <property>
+        <name>hbase.rpc.timeout</name>
+        <value>90000</value>
+        <description>client rpc超时时间</description>
+    </property>
+    <property>
+        <name>hbase.master</name>
+        <value>nn1.hadoop:60000</value>
+        <description>host8:6000</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>nn1.hadoop:2181</value>
+        <description>host9:2181</description>
+    </property>
+    <property>
+        <name>zookeeper.session.timeout</name>
+        <value>1200000</value>
+    </property>
+
+</configuration>

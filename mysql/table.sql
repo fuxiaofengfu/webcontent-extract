@@ -35,3 +35,11 @@ CREATE TABLE `crawler_content_xpath_report` (
   `create_time` datetime DEFAULT now() COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '可使用的xpath';
+
+-- hbase表
+-- create 'web_crawler_content','f1','f2','f3';
+-- row_key:time_host_urlmd5
+-- f1:webhosts,url,title,xpath
+-- f2:content
+-- f3:html
+

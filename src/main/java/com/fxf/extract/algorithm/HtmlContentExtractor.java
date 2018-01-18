@@ -8,12 +8,24 @@
 package com.fxf.extract.algorithm;
 
 import cn.wanghaomiao.xpath.model.JXDocument;
+import org.apache.commons.lang3.StringUtils;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.DomSerializer;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.xml.sax.InputSource;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.*;
 
 /**
@@ -275,6 +287,39 @@ public class HtmlContentExtractor {
 		}
 		//System.out.println(set);
 		return set;
+	}
+
+	public static String getContentByXpath(String html,String xpath) throws ParserConfigurationException {
+
+		if(StringUtils.isEmpty(html) || StringUtils.isEmpty(xpath)){
+			return null;
+		}
+		HtmlCleaner htmlCleaner = new HtmlCleaner();
+		TagNode tagNode = htmlCleaner.clean(html);
+		org.w3c.dom.Document dom = new DomSerializer(new CleanerProperties()).createDOM(tagNode);
+		try {
+			XPath _xPath = XPathFactory.newInstance().newXPath();
+			Object evaluate = _xPath.evaluate(xpath, dom, XPathConstants.STRING);
+			return (String)evaluate;
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String getTitleByHtml(String html){
+		if(StringUtils.isEmpty(html)){
+			return null;
+		}
+		HtmlCleaner htmlCleaner = new HtmlCleaner();
+		TagNode tagNode = htmlCleaner.clean(html);
+		TagNode[] elementsByName = tagNode.getElementsByName("title", true);
+
+		if(null != elementsByName && elementsByName.length >=1){
+			TagNode tagNode1 = elementsByName[0];
+			return tagNode1.getText().toString();
+		}
+		return null;
 	}
 
 	public static void main(String[] args) {

@@ -119,7 +119,7 @@ public class ExtractContentJob extends AbstractJob {
 					Map<String, String> dataMap3 = new HashMap<>();
 					dataMap3.put("row", row);
 					dataMap3.put("family", "f1");
-					dataMap3.put("qualifier", "title");
+					dataMap3.put("qualifier", "xpath");
 					dataMap3.put("value", xpath);
 
 					Map<String, String> dataMap4 = new HashMap<>();

@@ -84,7 +84,7 @@ public class ExtractContentXpathJob extends AbstractJob {
 			if (null == xpathMap || xpathMap.isEmpty()) {
 				return;
 			}
-			// webhosts content_xpath md5_xpath create_time
+			// webhosts ,content_xpath ,md5_xpath ,url,md5_url, create_time
 			String xpath = xpathMap.get(HtmlContentExtractor.CONTENT_KEY);
 			String host = UrlUtil.getHost(split[0]);
 			StringBuilder builder = new StringBuilder();
@@ -95,6 +95,10 @@ public class ExtractContentXpathJob extends AbstractJob {
 			try {
 				builder.append(MYSQL_SP);
 				builder.append(Md5Util.md5(xpath));
+				builder.append(MYSQL_SP);
+				builder.append(split[0]);
+				builder.append(MYSQL_SP);
+				builder.append(Md5Util.md5(split[0]));
 				builder.append(MYSQL_SP);
 				builder.append(DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
 			} catch (Exception e) {

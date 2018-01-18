@@ -114,7 +114,7 @@ public class ExtractContentXpathJob extends AbstractJob {
 		int run = ToolRunner.run(extractContentXpathJob, args);
 		int loadDataInMysql_fail = 111;
 		if (0 == run) {
-			String shell_path = PropertyUtil.getProperty("shell_path");
+			String shell_path = PropertyUtil.getProperty("load_xpath_shell_path");
 			if (StringUtils.isEmpty(shell_path)) {
 				run = loadDataInMysql_fail;
 			}

@@ -7,6 +7,7 @@
 
 package com.fxf.extract.algorithm;
 
+import cn.wanghaomiao.xpath.exception.XpathSyntaxErrorException;
 import cn.wanghaomiao.xpath.model.JXDocument;
 import org.apache.commons.lang3.StringUtils;
 import org.htmlcleaner.CleanerProperties;
@@ -300,6 +301,20 @@ public class HtmlContentExtractor {
 			Object evaluate = _xPath.evaluate(xpath, dom, XPathConstants.STRING);
 			return (String) evaluate;
 		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static String getContentByXpath1(String html,String xpath){
+		Document dom = Jsoup.parse(html);
+		JXDocument jx = new JXDocument(dom);
+		try {
+			List sel = jx.sel(xpath);
+			Elements el = new Elements(sel);
+			String text = el.text();
+			return text;
+		} catch (XpathSyntaxErrorException e) {
 			e.printStackTrace();
 		}
 		return null;

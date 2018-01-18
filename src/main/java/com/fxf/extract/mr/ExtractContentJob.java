@@ -103,7 +103,7 @@ public class ExtractContentJob extends AbstractJob {
 //				-- f2:content
 //				-- f3:html
 				for (String xpath : contentXpathByHost) {
-					String content = HtmlContentExtractor.getContentByXpath(html, xpath);
+					String content = HtmlContentExtractor.getContentByXpath1(html, xpath);
 					if (StringUtils.isEmpty(content)) continue;
 
 					Map<String, String> dataMap = new HashMap<>();

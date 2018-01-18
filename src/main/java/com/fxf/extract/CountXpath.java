@@ -17,7 +17,7 @@ public class CountXpath {
 	//按照xpath的比例取出正文xpath
 	private static final float CONTENT_XPATH_RATE = 0.7f;
 	//按照host统计的最小行数,低于该行数不计算比例
-    private static final int COUNT_MIN_ROW = 10;
+    private static final int COUNT_MIN_ROW = 3;
 
 	public synchronized static void countXpath(){
 
@@ -39,6 +39,7 @@ public class CountXpath {
 				params.add(now);
 			}
 			sql.deleteCharAt(sql.length()-1);
+			sql.append(" ON DUPLICATE KEY UPDATE content_xpath=content_xpath");
 			MyTransactionalDML.executeDML(sql.toString(),params);
 		} catch (SQLException e) {
 			e.printStackTrace();

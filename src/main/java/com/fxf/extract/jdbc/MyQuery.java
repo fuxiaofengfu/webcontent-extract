@@ -20,7 +20,7 @@ public class MyQuery {
 		Connection connection = MyConnection.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		if(CollectionUtils.isNotEmpty(params)){
-			int index = 0;
+			int index = 1;
 			for(Object obj : params){
 				preparedStatement.setObject(index,obj);
 				index ++;

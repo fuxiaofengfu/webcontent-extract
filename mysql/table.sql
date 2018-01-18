@@ -14,13 +14,14 @@ CREATE TABLE `crawler_content_xpath` (
 drop table IF EXISTS `crawler_content_xpath_use`;
 -- 允许存在同一个host有多个正文内容的xpath
 CREATE TABLE `crawler_content_xpath_use` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `webhosts` VARCHAR(200)  COMMENT 'xpath的host',
-  `content_xpath` VARCHAR(1024) COMMENT '内容xpath',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `webhosts` VARCHAR(200) NOT NULL COMMENT 'xpath的host',
+  `content_xpath` VARCHAR(800) NOT NULL COMMENT '内容xpath',
   `source` tinyint default 0 comment '{0:program,1:manual}',
-  `status` bigint(20) DEFAULT '0' COMMENT '{0:正常,1:失效}',
+  `status` bigint DEFAULT '0' COMMENT '{0:正常,1:失效}',
   `create_time` datetime DEFAULT now() COMMENT '创建时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hostxpath` (`webhosts`,`content_xpath`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '可使用的xpath';
 
 

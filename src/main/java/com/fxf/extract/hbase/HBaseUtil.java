@@ -12,6 +12,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.util.CollectionUtils;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class HBaseUtil {
 			connection = HBaseConnectionUtil.getConnection();
 			admin = connection.getAdmin();
 			if (!admin.tableExists(tableName)) {
-				createTable(admin, tableName, "f1");
+				throw new RuntimeException(MessageFormat.format("表{0}不存在",tableName.getNameAsString()));
 			}
 			Table table = connection.getTable(tableName);
 

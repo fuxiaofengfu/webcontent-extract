@@ -17,7 +17,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.xml.sax.InputSource;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
@@ -25,7 +24,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.*;
 
 /**
@@ -249,7 +247,7 @@ public class HtmlContentExtractor {
 				//System.out.println(el1.text());
 			}
 			resultMap.put(xpath, CONTENT);
-			resultMap.put(CONTENT_KEY,xpath);
+			resultMap.put(CONTENT_KEY, xpath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -289,9 +287,9 @@ public class HtmlContentExtractor {
 		return set;
 	}
 
-	public static String getContentByXpath(String html,String xpath) throws ParserConfigurationException {
+	public static String getContentByXpath(String html, String xpath) throws ParserConfigurationException {
 
-		if(StringUtils.isEmpty(html) || StringUtils.isEmpty(xpath)){
+		if (StringUtils.isEmpty(html) || StringUtils.isEmpty(xpath)) {
 			return null;
 		}
 		HtmlCleaner htmlCleaner = new HtmlCleaner();
@@ -300,22 +298,22 @@ public class HtmlContentExtractor {
 		try {
 			XPath _xPath = XPathFactory.newInstance().newXPath();
 			Object evaluate = _xPath.evaluate(xpath, dom, XPathConstants.STRING);
-			return (String)evaluate;
+			return (String) evaluate;
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public static String getTitleByHtml(String html){
-		if(StringUtils.isEmpty(html)){
+	public static String getTitleByHtml(String html) {
+		if (StringUtils.isEmpty(html)) {
 			return null;
 		}
 		HtmlCleaner htmlCleaner = new HtmlCleaner();
 		TagNode tagNode = htmlCleaner.clean(html);
 		TagNode[] elementsByName = tagNode.getElementsByName("title", true);
 
-		if(null != elementsByName && elementsByName.length >=1){
+		if (null != elementsByName && elementsByName.length >= 1) {
 			TagNode tagNode1 = elementsByName[0];
 			return tagNode1.getText().toString();
 		}

@@ -96,7 +96,8 @@ public class ExtractContentJob extends AbstractJob {
 
 			String dateStr = DateUtil.formatDate(new Date(), "yyyyMMddHHmmss");
 			try {
-				String row = dateStr + "_" + host + "_" + Md5Util.md5(url);
+				String md5url = Md5Util.md5(url);
+				String row = dateStr + "_" + host + "_" + md5url;
 
 				List<Map<String, String>> dataList = new ArrayList<>();
 //				-- f1:webhosts,url,title,xpath
@@ -149,7 +150,7 @@ public class ExtractContentJob extends AbstractJob {
 					dataList.add(dataMap4);
 					dataList.add(dataMap5);
 				}
-				HBaseUtil.saveBatchData(tableName, dataList);
+				HBaseUtil.saveBatchData(tableName, dataList,"_" + md5url);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

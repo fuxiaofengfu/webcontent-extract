@@ -2,7 +2,7 @@
 # 加载解析的xpath数据到crawler_content_xpath表中
 mysql=`which mysql`
 xpath="/user/fuxiaofeng/webcontent/xpathoutput/part*"
-local_xpath="/home/fuxiaofeng/webcontent"
+local_xpath="/home/fuxiaofeng/webcontent/"
 hadoop_path=`which hadoop`
 
 # 下载到本地

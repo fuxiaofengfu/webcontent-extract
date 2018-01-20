@@ -1,9 +1,18 @@
 #!/bin/bash
 # 加载解析的xpath数据到crawler_content_xpath表中
 mysql=`which mysql`
-xpath="/user/fuxiaofeng/webcontent/xpathoutput/part-m-00000"
-local_xpath="/home/fuxiaofeng/webcontent/part-m-00000"
+xpath="/user/fuxiaofeng/webcontent/xpathoutput"
+local_xpath="/home/fuxiaofeng/webcontent"
 hadoop_path=`which hadoop`
+
+mysql_loadfile="$local_xpath/mysqlload.txt"
+for file in `ls $local_xpath/part*`:
+do
+    if test -f $file ;then
+        cat $file >> $mysql_loadfile
+        rm -f $file
+    fi
+done
 
 # 下载到本地
 $hadoop_path fs -get $xpath $local_xpath
@@ -14,3 +23,4 @@ cmd="$mysql -h192.168.88.195 -P5506 -umysql -p12345678 -Dhainiureport -e \
 (id,webhosts,content_xpath,md5_xpath,url,md5_url,create_time)\""
 echo $cmd
 eval $cmd
+rm -f $mysql_loadfile

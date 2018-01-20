@@ -70,7 +70,6 @@ public class ExtractContentJob extends AbstractJob {
 		}
 
 		/**
-		 * 不建议用以下方式处理到hbase中，最好使用hfile方式直接load到hbase中
 		 * @param key
 		 * @param value
 		 * @param context

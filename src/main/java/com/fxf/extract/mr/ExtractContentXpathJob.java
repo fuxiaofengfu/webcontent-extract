@@ -75,7 +75,6 @@ public class ExtractContentXpathJob extends AbstractJob {
 
 		@Override
 		protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-			context.getCounter("fuxiaofeng", "total").increment(1);
 			if (null == value) return;
 			String s = value.toString();
 			if (StringUtils.isEmpty(s)) return;

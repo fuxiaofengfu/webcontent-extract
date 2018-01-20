@@ -6,6 +6,8 @@ log_path="/home/fuxiaofeng/extract.log"
 hadoop_path=`which hadoop`
 jar_path="/home/fuxiaofeng/webcontent-extract-1.0-SNAPSHOT.jar"
 add_libs="/home/fuxiaofeng/libs/JsoupXpath-0.3.2.jar,/home/fuxiaofeng/libs/jsoup-1.9.2.jar,/home/fuxiaofeng/libs/htmlcleaner-2.9.jar,/home/fuxiaofeng/libs/mysql-connector-java-5.1.45.jar"
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/home/fuxiaofeng/libs/*
+
 echo "$hadoop_path"
 
 # 提取网页正文的xpath

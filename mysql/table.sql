@@ -38,7 +38,7 @@ CREATE TABLE `crawler_content_xpath_report` (
 
 -- hbase表
 -- create 'web_crawler_content','f1','f2','f3';
--- row_key:time_host_urlmd5
+-- row_key:host_time_urlmd5
 -- f1:webhosts,url,title,xpath
 -- f2:content
 -- f3:html

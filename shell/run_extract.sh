@@ -1,5 +1,5 @@
 #!/bin/bash
-input_path="/user/fuxiaofeng/webcontent/input"
+input_path="/data/hainiu/hainiu_cralwer/201801"
 xpathout_path="/user/fuxiaofeng/webcontent/xpathoutput"
 contentout_path="/user/fuxiaofeng/webcontent/contentout"
 log_path="/home/fuxiaofeng/extract.log"

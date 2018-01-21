@@ -44,6 +44,7 @@ public class ExtractContentJob extends AbstractJob {
 		job.setMapOutputValueClass(Text.class);
 
 		FileInputFormat.setInputPaths(job, conf.get(INPUT_PATH));
+		FileInputFormat.setInputDirRecursive(job,true);
 		FileSystem fileSystem = FileSystem.get(conf);
 		Path out = new Path(conf.get(OUTPUT_PATH));
 		if (fileSystem.exists(out)) {

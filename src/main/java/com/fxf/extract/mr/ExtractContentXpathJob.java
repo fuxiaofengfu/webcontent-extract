@@ -55,6 +55,7 @@ public class ExtractContentXpathJob extends AbstractJob {
 		job.setNumReduceTasks(0);
 
 		FileInputFormat.setInputPaths(job, conf.get(INPUT_PATH));
+		FileInputFormat.setInputDirRecursive(job,true);
 		String outputPath = conf.get(OUTPUT_PATH);
 		Path outPath = new Path(outputPath);
 		FileSystem fileSystem = FileSystem.get(conf);
